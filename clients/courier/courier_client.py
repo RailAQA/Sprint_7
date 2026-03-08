@@ -7,7 +7,9 @@ from clients.public_http_builder import get_public_http_client
 
 class CourierClient(ApiClient):
     def create_courier_api(self, request: CreateCourierRequestSchema) -> Response:
-        return self.post(url="/api/v1/courier", json=request)
+        request_data = request.model_dump(by_alias=True)
+        return self.post(url="/api/v1/courier", json=request_data)
     
 def get_courier_client() -> CourierClient:
-    return CourierClient(client=get_public_http_client)
+    return CourierClient(client=get_public_http_client())
+

@@ -10,4 +10,4 @@ class ApiClient:
         return self.client.get(url=url, params=params)
 
     def post(self, url: str, data = None, json = None) -> Response:
-        return requests.post(url=url, data=data, json=json)
+        return self.client.post(url=url, data=data, json=json)
