@@ -1,7 +1,7 @@
-from clients.courier.courier_schema import CreateCourierBadRequestSchema, CreateCourierRequestSchema, CreateCourierResponseSchema, CreateCourierConflictResponseSchema, CreateCourierrBadRequesResponseSchema
+from clients.courier.courier_schema import CreateCourierBadRequestSchema, CreateCourierRequestSchema, CreateCourierResponseSchema, CreateCourierConflictResponseSchema, CreateCourierrBadRequesResponseSchema, LoginCourierRequestSchema, LoginCourierResponseSchema
 from fixtures.courier import CourierFixture
 from tools.assertions.base import assert_status_code
-from tools.assertions.courier import assert_bad_request_create_courier_response, assert_conflict_create_courier_response, assert_create_courier_response
+from tools.assertions.courier import assert_bad_request_create_courier_response, assert_conflict_create_courier_response, assert_create_courier_response, assert_login_courier_response
 from tools.fakers import fake
 from tools.assertions.schema import validate_json_schema
 from clients.courier.courier_client import CourierClient
@@ -45,3 +45,13 @@ class TestCourier:
         assert_status_code(actual=response.status_code, expected=HTTPStatus.BAD_REQUEST)
         validate_json_schema(response.json(), schema=response_data.model_json_schema())
         assert_bad_request_create_courier_response(response=response_data)
+
+
+    def test_login_courier(self, function_courier: CourierFixture, courier_client: CourierClient):
+        request = LoginCourierRequestSchema(login=function_courier.request.login, password=function_courier.request.password)
+        response = courier_client.login_courier_api(request=request)
+        response_data = LoginCourierResponseSchema.model_validate_json(response.text)
+
+        assert_status_code(actual=response.status_code, expected=HTTPStatus.OK)
+        validate_json_schema(instance=response.json(), schema=response_data.model_json_schema())
+        assert_login_courier_response(response=response_data)

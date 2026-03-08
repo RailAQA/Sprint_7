@@ -16,4 +16,3 @@ class Fake:
         return self.faker.first_name()
     
 fake = Fake(faker=Faker())
-print(fake.password())

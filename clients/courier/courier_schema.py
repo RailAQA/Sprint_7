@@ -28,3 +28,10 @@ class CreateCourierBadRequestSchema(BaseModel):
 class CreateCourierrBadRequesResponseSchema(BaseModel):
     code: HTTPStatus = Field(default=HTTPStatus.BAD_REQUEST)
     message: str = "Недостаточно данных для создания учетной записи"
+
+class LoginCourierRequestSchema(BaseModel):
+    login: str
+    password: str
+
+class LoginCourierResponseSchema(BaseModel):
+    id: int

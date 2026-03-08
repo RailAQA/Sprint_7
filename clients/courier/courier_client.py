@@ -2,7 +2,7 @@ from clients.api_client import ApiClient
 from pydantic import BaseModel
 from requests import Response
 
-from clients.courier.courier_schema import CreateCourierRequestSchema
+from clients.courier.courier_schema import CreateCourierRequestSchema, LoginCourierRequestSchema
 from clients.public_http_builder import get_public_http_client
 
 
@@ -10,6 +10,10 @@ class CourierClient(ApiClient):
     def create_courier_api(self, request: CreateCourierRequestSchema) -> Response:
         request_data = request.model_dump(by_alias=True)
         return self.post(url="/api/v1/courier", json=request_data)
+    
+    def login_courier_api(self, request: LoginCourierRequestSchema) -> Response:
+        request_data = request.model_dump(by_alias=True)
+        return self.post(url="/api/v1/courier/login", json=request_data)
     
 def get_courier_client() -> CourierClient:
     return CourierClient(client=get_public_http_client())
