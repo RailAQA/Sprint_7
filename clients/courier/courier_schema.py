@@ -35,3 +35,7 @@ class LoginCourierRequestSchema(BaseModel):
 
 class LoginCourierResponseSchema(BaseModel):
     id: int
+
+class LoginCourierNotFoundResponseSchema(BaseModel):
+    code: HTTPStatus = Field(default=HTTPStatus.NOT_FOUND)
+    message: str = "Учетная запись не найдена"

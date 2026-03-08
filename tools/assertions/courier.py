@@ -1,5 +1,5 @@
 from tools.assertions.base import assert_equal, assert_is_true
-from clients.courier.courier_schema import CreateCourierResponseSchema, CreateCourierConflictResponseSchema, CreateCourierrBadRequesResponseSchema, LoginCourierResponseSchema
+from clients.courier.courier_schema import CreateCourierResponseSchema, CreateCourierConflictResponseSchema, CreateCourierrBadRequesResponseSchema, LoginCourierResponseSchema, LoginCourierNotFoundResponseSchema
 
 from http import HTTPStatus
 
@@ -17,3 +17,7 @@ def assert_bad_request_create_courier_response(response: CreateCourierrBadReques
 
 def assert_login_courier_response(response: LoginCourierResponseSchema):
     assert_is_true(actual=response.id, name="id")
+
+def assert_not_found_create_courier_response(response: LoginCourierNotFoundResponseSchema):
+    assert_equal(actual=response.code, expected=HTTPStatus.NOT_FOUND, name="code")
+    assert_equal(actual=response.message, expected="Учетная запись не найдена", name="message")

@@ -7,10 +7,10 @@ class Fake:
         self.faker = faker
 
     def login(self) -> str:
-        return self.faker.user_name()
+        return f"{self.faker.user_name()}{time.time()}"
     
     def password(self) -> str:
-        return f"{self.faker.password()}{time.time()}"
+        return self.faker.password()
     
     def first_name(self) -> str:
         return self.faker.first_name()
