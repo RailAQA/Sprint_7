@@ -1,4 +1,5 @@
 from clients.api_client import ApiClient
+from pydantic import BaseModel
 from requests import Response
 
 from clients.courier.courier_schema import CreateCourierRequestSchema
@@ -12,4 +13,3 @@ class CourierClient(ApiClient):
     
 def get_courier_client() -> CourierClient:
     return CourierClient(client=get_public_http_client())
-

@@ -1,5 +1,4 @@
 from requests import Session, Response
-import requests
 
 
 class ApiClient:

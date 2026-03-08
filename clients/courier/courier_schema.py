@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field, ConfigDict
+from http import HTTPStatus
 
 from tools.fakers import fake
 
@@ -12,3 +13,7 @@ class CreateCourierRequestSchema(BaseModel):
 
 class CreateCourierResponseSchema(BaseModel):
     ok: bool = True
+
+class CreateCourierConflictResponseSchema(BaseModel):
+    code: HTTPStatus = Field(default=HTTPStatus.CONFLICT)
+    message: str = "Этот логин уже используется"
