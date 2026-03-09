@@ -1,3 +1,4 @@
 pytest_plugins = (
-    "fixtures.courier"
+    "fixtures.courier",
+    "fixtures.orders"
 )
