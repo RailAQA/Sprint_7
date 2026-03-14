@@ -15,7 +15,6 @@ class CreateCourierResponseSchema(BaseModel):
     ok: bool = True
 
 class CreateCourierConflictResponseSchema(BaseModel):
-    code: HTTPStatus = Field(default=HTTPStatus.CONFLICT)
     message: str = "Этот логин уже используется"
 
 class CreateCourierBadRequestSchema(BaseModel):
@@ -26,7 +25,6 @@ class CreateCourierBadRequestSchema(BaseModel):
     first_name: str | None = Field(alias="firstName", default_factory=fake.first_name)
 
 class CreateCourierrBadRequesResponseSchema(BaseModel):
-    code: HTTPStatus = Field(default=HTTPStatus.BAD_REQUEST)
     message: str = "Недостаточно данных для создания учетной записи"
 
 class LoginCourierRequestSchema(BaseModel):
@@ -37,7 +35,6 @@ class LoginCourierResponseSchema(BaseModel):
     id: int
 
 class LoginCourierNotFoundResponseSchema(BaseModel):
-    code: HTTPStatus = Field(default=HTTPStatus.NOT_FOUND)
     message: str = "Учетная запись не найдена"
 
 class LoginCourierBadRequestSchema(BaseModel):
@@ -45,5 +42,4 @@ class LoginCourierBadRequestSchema(BaseModel):
     password: str | None
 
 class LoginCourierBadRequestResponseSchema(BaseModel):
-    code: HTTPStatus = Field(default=HTTPStatus.BAD_REQUEST)
     message: str = "Недостаточно данных для входа"
