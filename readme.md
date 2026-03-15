@@ -1,0 +1,10 @@
+# Реализованные тесты
+- test_create_courier
+- test_create_duplicate_courier
+- test_create_without_required_parametres
+- test_login_courier
+- test_login_courier_with_incorrect_login
+- test_login_courier_with_incorrect_password
+- test_login_courier_without_required_parametres
+- test_create_order
+- test_get_orders
